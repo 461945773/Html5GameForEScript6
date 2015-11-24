@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge">
+	<title>Test Music</title>
+	<link rel="stylesheet" href="">
+	<script src="../js/music.js"></script>
+</head>
+
+<body>
+	<button onclick="mainMusic.play()">播放</button>
+	<button onclick="mainMusic.pause()">暂停</button>
+	<button onclick="mainMusic.stop()">停止</button>
+	<br>
+	<strong>音量调节</strong>
+	<input id="volumeInput" type="range" min="0" max="100" value="50" onchange="changeVolume(mainMusic)" />
+	<div id="volumeValue" style="margin-left:127px;"></div>
+	<script>
+		var mainMusic = new Music("../music/mainMusic.mp3");
+		var volume = document.getElementById("volumeInput").value;
+		document.getElementById("volumeValue").innerHTML=`${volume}`;
+		mainMusic.volume = volume;
+		function changeVolume(music){
+			volume = document.getElementById("volumeInput").value;
+			document.getElementById("volumeValue").innerHTML=`${volume}`;
+			var v = volume/100;
+			music.setVolume(v);
+		}
+	</script>
+</body>
+
+</html>
